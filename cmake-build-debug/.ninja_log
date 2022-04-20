@@ -1,0 +1,8 @@
+# ninja log v5
+1	935	6721824625672570	CMakeFiles/Lab3.dir/main.cpp.obj	8c7f5034d1b465ff
+938	1587	6721824632133856	Lab3.exe	2ec31655b51a98e9
+5	5286	6721842720250603	CMakeFiles/Lab3.dir/src/main.cpp.obj	cbdbdcc8ffb9a02
+1	5305	6721842720460478	CMakeFiles/Lab3.dir/src/myStackLib.cpp.obj	8b4ad8de2d1c76a7
+5305	6801	6721842735318283	Lab3.exe	6df41d7122d3e6bf
+7	3327	6721843035955657	CMakeFiles/Lab3.dir/src/main.cpp.obj	cbdbdcc8ffb9a02
+3328	3528	6721843037914301	Lab3.exe	6df41d7122d3e6bf
