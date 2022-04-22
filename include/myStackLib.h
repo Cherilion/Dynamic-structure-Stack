@@ -29,6 +29,8 @@ private:
     void remove_last();
     Node<T>* at(const int);
     void selectionSort();
+    int partition(pr_t);
+    void quickSort(pr_t);
 
 public:
     myStack() : first(nullptr), last(nullptr), _size(0) {}
@@ -38,7 +40,7 @@ public:
     void remove(const int);
     int find(T);
     int size();
-    void sort();
+    void sort(string);
     void print();
 
     T operator[] (const int _index) {
@@ -192,6 +194,71 @@ void myStack<T>::selectionSort(){
     }
 }
 
+
+template<typename T>
+int myStack<T>::partition(pr_t _limits)
+{
+
+    int pivot = _limits.first;
+
+    int count = 0;
+    for (int i = _limits.first + 1; i <= _limits.second; i++) {
+        if (this->at(i)->value <= this->at(pivot)->value)
+            count++;
+    }
+
+
+    int _pivotIndex = _limits.first + count;
+    swap(this->at(_pivotIndex)->value, this->at(_limits.first)->value);
+
+
+    int i = _limits.first, j = _limits.second;
+
+    while (i < _pivotIndex && j > _pivotIndex) {
+
+        while (this->at(i)->value <= this->at(_pivotIndex)->value) {
+            i++;
+        }
+
+        while (this->at(i)->value > this->at(_pivotIndex)->value) {
+            j--;
+        }
+
+        if (i < _pivotIndex && j > _pivotIndex) {
+            swap(this->at(i++)->value, this->at(j--)->value);
+        }
+    }
+
+    return _pivotIndex;
+}
+
+template<typename T>
+void myStack<T>::quickSort(pr_t _limits)
+{
+
+    if (_limits.first >= _limits.second)
+        return;
+
+    int pivotIndex = partition(_limits);
+
+    if(_limits.first < pivotIndex)
+        quickSort(make_pair(_limits.first, pivotIndex - 1));
+
+    if(_limits.second > pivotIndex)
+        quickSort(make_pair(pivotIndex + 1, _limits.second));
+}
+
+template<typename T>
+void myStack<T>::sort(string _method){
+    if(_method == "selectionSort"){
+        this->selectionSort();
+    }
+    else if(_method == "quickSort"){
+        this->quickSort(make_pair(0, this->size() - 1));
+    }
+    else
+        return;
+}
 
 
 #endif //LAB3_MYSTACKLIB_H

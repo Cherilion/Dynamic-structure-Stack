@@ -8,7 +8,7 @@ int main() {
     nums.push_back(10);
     nums.push_back(5);
     try {
-        nums.sort();
+        nums.sort("quickSort");
     } catch (const char* msg) {
         cout << msg << endl;
     }
