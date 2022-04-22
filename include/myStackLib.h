@@ -28,6 +28,7 @@ private:
     void remove_first();
     void remove_last();
     Node<T>* at(const int);
+    void selectionSort();
 
 public:
     myStack() : first(nullptr), last(nullptr), _size(0) {}
@@ -42,16 +43,15 @@ public:
 
     T operator[] (const int _index) {
         if (this->empty()){
-            throw "Error! Stack is empty!h";
+            throw "Error! Stack is empty!";
         }
 
         Node<T>* _pointer = first;
         for (int i = 0; i < _index; i++) {
             _pointer = _pointer->next;
-            /*
             if (_pointer == nullptr) {
-                throw "Error element index!h";
-            }*/
+                throw "Error element index!";
+            }
         }
         return _pointer->value;
     }
@@ -175,36 +175,23 @@ Node<T>* myStack<T>::at(const int _index) {
     return _pointer;
 }
 
+
 template<typename T>
-void myStack<T>::sort(){
-    myStack<T>& _stack = *this;
+void myStack<T>::selectionSort(){
     int min;
     for (int i = 0; i < this->_size; i++)
     {
         min = i;
         for (int j = i + 1; j < this->_size; j++)
         {
-            if (_stack[j] <= _stack[min])
+            if (this->at(j)->value <= this->at(min)->value)
                 min = j;
         }
-        //swap(_stack[min], _stack[i]);
-        Node<T>* tempNext;
-        if(min != 0 && i != 0){
-            tempNext = this->at( min- 1)->next;
-            this->at(min -  1)->next = this->at(i);
-            this->at(i -  1)->next = tempNext;
-        }
-        else if(min == 0 && i != 0){
-            tempNext = this->at(i - 1)->next;
-            first = this->at(i);
-            this->at(i -  1)->next = tempNext;
-        }
-        else if(min != 0 && i == 0){
-            tempNext = this->at(min - 1)->next;
-            first = this->at(min)->next;
-            this->at(min -  1)->next = tempNext;
-        }
+        swap(this->at(min)->value, this->at(i)->value);
+
     }
 }
+
+
 
 #endif //LAB3_MYSTACKLIB_H
