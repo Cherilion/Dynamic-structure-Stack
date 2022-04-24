@@ -234,7 +234,7 @@ int myStack<T>::partition(pr_t _limits)
             i++;
         }
 
-        while (this->at(i)->value > this->at(_pivotIndex)->value) {
+        while (this->at(j)->value > this->at(_pivotIndex)->value) {
             j--;
         }
 
