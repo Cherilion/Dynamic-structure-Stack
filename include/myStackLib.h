@@ -105,6 +105,14 @@ void myStack<T>::remove_first() {
     Node<T>* _pointer = first;
     first = _pointer->next;
     delete _pointer;
+
+    Node<T>* _tempPointer = first;
+    while (_tempPointer->next != last) {
+        _tempPointer->next->index = _tempPointer->index + 1;
+        _tempPointer = _tempPointer->next;
+    }
+    this->_size -= 1;
+
 }
 
 template<typename T>
@@ -121,6 +129,7 @@ void myStack<T>::remove_last() {
     _pointer->next = nullptr;
     delete last;
     last = _pointer;
+    this->_size -= 1;
 }
 
 template<typename T>
@@ -142,9 +151,14 @@ void myStack<T>::remove(const int _index) {
     }
     if (!fast) {
         throw "Error! This element does not exist!";
-        return;
     }
     slow->next = fast->next;
+    slow = fast->next;
+    while(slow) {
+        slow->index -= 1;
+        slow = slow->next;
+    }
+    this->_size -= 1;
     delete fast;
 }
 
