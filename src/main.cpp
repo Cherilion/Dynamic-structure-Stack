@@ -21,5 +21,6 @@ int main() {
     }
     nums.print();
 
+    system("pause");
     return 0;
 }
