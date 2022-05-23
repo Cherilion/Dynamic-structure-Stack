@@ -107,8 +107,8 @@ void myStack<T>::remove_first() {
     delete _pointer;
 
     Node<T>* _tempPointer = first;
-    while (_tempPointer->next != last) {
-        _tempPointer->next->index = _tempPointer->index + 1;
+    while(_tempPointer != nullptr){
+        _tempPointer->index--;
         _tempPointer = _tempPointer->next;
     }
     this->_size -= 1;

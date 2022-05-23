@@ -14,9 +14,9 @@ int main() {
     nums.print();
 
     for(int i = 0; i < nums.size(); i++){
-        if((nums[i] % 10 && !(nums[i] % 5)) || nums[i] == 5){
+        if(nums[i] % 10 && !(nums[i] % 5)){
             nums.remove(i);
-            if(i) {i--;}
+            i--;
         }
     }
     nums.print();
